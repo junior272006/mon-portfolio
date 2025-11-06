@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { Burger, Container, Group } from '@mantine/core';
+import { Burger, Container, Group, Paper, Transition, Text, Box } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Text, Box } from '@mantine/core';
 import classes from './Header.module.css';
 
 const links = [
@@ -13,7 +12,7 @@ const links = [
 ];
 
 export default function Header() {
-  const [opened, { toggle }] = useDisclosure(false);
+  const [opened, { toggle, close }] = useDisclosure(false);
   const [active, setActive] = useState(links[0].link);
 
   const items = links.map((link) => (
@@ -25,6 +24,7 @@ export default function Header() {
       onClick={(event) => {
         event.preventDefault();
         setActive(link.link);
+        close();
       }}
     >
       {link.label}
@@ -33,36 +33,49 @@ export default function Header() {
 
   return (
     <header className={classes.header}>
-      <Container size="md" className={classes.inner} style={{ display: 'flex', justifyContent: 'space-between',  }}>
-          <Box
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        gap: '4px',
-      }}
-    >
-      <Text
-        size="xl"
-        fw={900}
-        variant="gradient"
-       style={{ 
-      lineHeight: 1.3,
-      background: 'linear-gradient(270deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #f59e0b, #06b6d4)',
-      backgroundSize: '400% 400%',
-      animation: 'gradient-flow 8s ease infinite',
-      WebkitBackgroundClip: 'text',
-      WebkitTextFillColor: 'transparent',
-      backgroundClip: 'text'
-    }}
-      >
-        JUNIOR
-      </Text>
-    </Box>
-        <Group gap={5} visibleFrom="xs">
+      <Container size="md" className={classes.inner}>
+      
+        <Box
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '4px',
+          }}
+        >
+          <Text
+            size="xl"
+            fw={900}
+            variant="gradient"
+            style={{
+              lineHeight: 1.3,
+              background: 'linear-gradient(270deg, #06b6d4, #3b82f6, #8b5cf6, #ec4899, #f59e0b, #06b6d4)',
+              backgroundSize: '400% 400%',
+              animation: 'gradient-flow 8s ease infinite',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+          >
+            JUNIOR
+          </Text>
+        </Box>
+
+     
+        <Group gap={5} visibleFrom="sm">
           {items}
         </Group>
 
-        <Burger opened={opened} onClick={toggle} hiddenFrom="xs" size="sm" />
+      
+        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+
+      
+        <Transition transition="pop-top-right" duration={200} mounted={opened}>
+          {(styles) => (
+            <Paper className={classes.dropdown} withBorder style={styles}>
+              {items}
+            </Paper>
+          )}
+        </Transition>
       </Container>
     </header>
   );
