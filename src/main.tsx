@@ -6,6 +6,7 @@ import '@mantine/core/styles.css'
 import App from './App.tsx'
 import Header from './Header.tsx'
 import Tech from './Tech.tsx'
+import Footer from './Footer.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <MantineProvider>
@@ -14,6 +15,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/' index element={<App />} />
          <Route path='/header' index element={<Header />} />
           <Route path='/tech' index element={<Tech />} />
+          <Route path='/footer' index element={<Footer />} />
         </Routes>
       </BrowserRouter>
     </MantineProvider>

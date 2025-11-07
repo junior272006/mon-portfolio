@@ -32,8 +32,8 @@ export default function Header() {
   ));
 
   return (
-    <header className={classes.header}>
-      <Container size="md" className={classes.inner}>
+    <header className={classes.header} style={{background:"black"}}>
+      <Container size="md" className={classes.inner} >
       
         <Box
           style={{
@@ -61,12 +61,18 @@ export default function Header() {
         </Box>
 
      
-        <Group gap={5} visibleFrom="sm">
+        <Group gap={5} visibleFrom="sm" >
           {items}
         </Group>
 
       
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
+       <Burger
+  opened={opened}
+  onClick={toggle}
+  color="white"  
+  className={classes.burger}
+/>
+
 
       
         <Transition transition="pop-top-right" duration={200} mounted={opened}>
