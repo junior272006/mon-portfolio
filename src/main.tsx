@@ -7,15 +7,17 @@ import App from './App.tsx'
 import Header from './Header.tsx'
 import Tech from './Tech.tsx'
 import Footer from './Footer.tsx'
+import Competences from './Competences.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <MantineProvider>
       <BrowserRouter>
       <Routes>
         <Route path='/' index element={<App />} />
-         <Route path='/header' index element={<Header />} />
-          <Route path='/tech' index element={<Tech />} />
-          <Route path='/footer' index element={<Footer />} />
+         <Route path='/header'  element={<Header />} />
+          <Route path='/tech'  element={<Tech />} />
+          <Route path='/footer'  element={<Footer />} />
+           <Route path='/competences'  element={<Competences />} />
         </Routes>
       </BrowserRouter>
     </MantineProvider>

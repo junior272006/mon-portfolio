@@ -1,9 +1,10 @@
-import { AppShell, Grid, Text, Image, Button } from '@mantine/core';
+import { AppShell, Grid, Text, Image, Button,Container } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconDownload } from '@tabler/icons-react';
+import { IconDownload,IconNetwork, IconCode, IconPalette, IconUser } from '@tabler/icons-react';
 import Header from './Header';
 import Tech from './Tech';
 import Footer from './Footer';
+import Competences from './Competences';
 export default function App() {
   const [opened] = useDisclosure();
 
@@ -17,7 +18,7 @@ export default function App() {
         collapsed: { mobile: !opened },
       }}
       style={{
-        backgroundColor: "#000000", // 👈 fond noir global
+        backgroundColor: "#000000", 
         color: "white",
       }}
     >
@@ -33,7 +34,7 @@ export default function App() {
           margin: 0,
           width: "100vw",
           minHeight: "100vh",
-          backgroundColor: "#000000", // 👈 fond noir
+          backgroundColor: "#000000", 
           color: "white",
         }}
       >
@@ -274,6 +275,66 @@ export default function App() {
           </Text>
 
           <Tech />
+          <br />
+
+          <Text   size="xl"
+            mt="md"
+            style={{ letterSpacing: 0.4, fontWeight: "bold", textAlign: 'center', color: 'white' }}>Mes Compétences</Text>
+<br />
+
+ <Container size="xl" py="xl" style={{ backgroundColor: '#000', minHeight: '100vh' }}>
+      <Grid gutter="lg">
+        
+        <Grid.Col span={{ base: 12, md: 6 }}>
+          <Competences 
+            title="Réseaux & Systèmes"
+            icon={<IconNetwork size={28} />}
+            skills={[
+              { name: 'Réseaux Informatiques', level: 85 },
+              { name: 'Windows & Linux', level: 75 },
+              { name: 'VirtualBox & VMWare', level: 70 },
+            ]}
+          />
+        </Grid.Col>
+
+        <Grid.Col span={{ base: 12, md: 6 }}>
+          <Competences 
+            title="Développement Web"
+            icon={<IconCode size={28} />}
+            skills={[
+              { name: 'HTML5', level: 90 },
+              { name: 'CSS3', level: 85 },
+              { name: 'JS & React', level: 75 },
+            ]}
+          />
+        </Grid.Col>
+
+        <Grid.Col span={{ base: 12, md: 6 }}>
+          <Competences 
+            title="Design Graphique"
+            icon={<IconPalette size={28} />}
+            skills={[
+              { name: 'Photoshop', level: 80 },
+              { name: 'Illustrator', level: 70 },
+               { name: 'Canva', level: 70 },
+            ]}
+          />
+        </Grid.Col>
+
+        <Grid.Col span={{ base: 12, md: 6 }}>
+          <Competences 
+            title="Compétences Personnelles"
+            icon={<IconUser size={28} />}
+            skills={[
+              { name: 'Travail d\'équipe', level: 90 },
+              { name: 'Communication', level: 85 },
+                { name: 'Leadership', level: 85 },
+            ]}
+          />
+        </Grid.Col>
+        
+      </Grid>
+    </Container>
         </>
       </AppShell.Main>
      
